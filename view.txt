@@ -1,0 +1,23 @@
+CREATE or REPLACE VIEW `viewZakaz`  
+AS SELECT 
+zakaz.Code_zakaza as Code_zakaza,
+zakaz.Adress_postr as Adress_postr,
+zakaz.Date_begin as Date_begin,
+zakaz.Date_end as Date_end,
+zakaz.Cost_postr as Cost_postr,
+zakaz.Code_polz as Code_polz,
+zakaz.Code_postr as Code_postr,
+type_postr.Name as NamePostr,
+zakaz.Code_brig as Code_brig,
+stroi_brig.Surname_brig as Surname_brig,
+zakaz.Code_sost as Code_sost,
+sost_zakaza.Name as sostName,
+zakaz.Code_rab as Code_rab,
+spisok_raboty.Name as nameRab,
+zakaz.Date_offirm as Date_offirm,
+zakaz.Date_zak_dog as Date_zak_dog
+FROM zakaz 
+left join type_postr on zakaz.Code_postr = type_postr.Code_postr
+left join stroi_brig on zakaz.Code_brig = stroi_brig.Code_brig
+left join sost_zakaza on zakaz.Code_sost = sost_zakaza.Code_sost
+left join spisok_raboty on zakaz.Code_rab = spisok_raboty.Code_rab;
